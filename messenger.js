@@ -144,7 +144,7 @@ if (response.quickreplies) {  // Wit.ai wants us to include quickreplies, alrigh
     if (name) {
       context.name = name; // we should call a weather API here
       delete context.missingintent;
-    } else {
+         } else {
       context.missingintent = true;
       delete context.name;
     }
@@ -201,7 +201,7 @@ getresid({context, entities}) {
 cancelappointment1({context,entities}){
 return new Promise(function(resolve, reject) {
 var http=require('http');
-var url='http://106.51.64.238:8080/api/Appointment/CancelAppointment/'+global.id1;
+var url='http://192.168.0.10:8088/api/Appointment/CancelAppointment/'+global.id1;
 http.get(url, (res) => {
 //console.log(d);
 res.setEncoding('utf8');
@@ -214,8 +214,7 @@ res.setEncoding('utf8');
      //var datetime=null;
      
          context.cancelapp1=parsedData;
-            
-     }    
+                 }    
          //  console.log(p);
          catch (e) {
             console.log(e.message);
@@ -242,7 +241,7 @@ res.setEncoding('utf8');
   cancelappointment({context,entities}){
 return new Promise(function(resolve, reject) {
 var http=require('http');
-var url='http://106.51.64.238:8080/api/Appointment/CancelAppointment/'+global.id;
+var url='http://192.168.0.10:8088/api/Appointment/CancelAppointment/'+global.id;
 http.get(url, (res) => {
 //console.log(d);
 res.setEncoding('utf8');
@@ -257,6 +256,8 @@ res.setEncoding('utf8');
        context.reenter=parsedData;
      }
      else{
+       
+       
     context.cancelapp=parsedData;
      }
        
@@ -390,7 +391,7 @@ getappointment({context, entities}) {
       var http = require('http'); 
  var scheduleDateTime=formatDate(date,starttime);
 // var d = ('2017-'+global.month+'-'+ global.date +'T'+global.starttime+':00:00 ');
-    var url='http://106.51.64.238:8080/api/Appointment?doctorName=Alexander&sDate='+scheduleDateTime;
+    var url='http://192.168.0.10:8088/api/Appointment?doctorName=Alexander&sDate='+scheduleDateTime;
 http.get(url, (res) => {
 //console.log(d);
 res.setEncoding('utf8');
@@ -432,7 +433,7 @@ getappointment1({context, entities}) {
       var http = require('http'); 
  var scheduleDateTime1=formatDate1(date1,starttime1);
 // var d = ('2017-'+global.month+'-'+ global.date +'T'+global.starttime+':00:00 ');
-    var url='http://106.51.64.238:8080/api/Appointment?doctorName=Alexander&sDate='+scheduleDateTime1;
+    var url='http://192.168.0.10:8088/api/Appointment?doctorName=Alexander&sDate='+scheduleDateTime1;
 http.get(url, (res) => {
 //console.log(d);
 res.setEncoding('utf8');
@@ -472,7 +473,7 @@ getresappointment({context, entities}) {
  var resscheduleDateTime=resformatDate(resdate,restime);
 // var d = ('2017-'+global.month+'-'+ global.date +'T'+global.starttime+':00:00 ');
    // var url='http://192.168.0.10:8088/api/Appointment/ReSheduleAppointment?id=115&sTime=2017-02-13T12:00:00';
-    var url='http://106.51.64.238:8080/api/Appointment/ReSheduleAppointment?id='+global.resid+'&sTime='+resscheduleDateTime;        
+    var url='http://192.168.0.10:8088/api/Appointment/ReSheduleAppointment?id='+global.resid+'&sTime='+resscheduleDateTime;        
 http.get(url, (res) => {
 //console.log(d);
 res.setEncoding('utf8');
@@ -646,6 +647,7 @@ const firstEntityValue = (entities, entity) => {
 
 app.listen(PORT);
 console.log('Listening on :' + PORT + '...');
+// index. Let's say something fun
 //for getting response from dynamic table
  /*getShedularSettings({context}){  
    return new Promise(function(resolve, reject) {
